@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - S&C</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WeatherApp.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <div class="container-fluid">
+                <a asp-controller="Home" asp-action="SunriseSunset">
+                    <img src="~/images/sun.png" alt="Sunrise Sunset" style="height:80px; margin-left:10px;" />
+                </a>
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                </a>
+                <div class="navbar-text ms-auto">
+                    <h1 class="text-primary">S&C Weather</h1>
+                    <small class="text-primary">
+                        @DateTime.Now.ToString("dddd, dd MMMM yyyy, hh:mm tt")
+                    </small>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- S&C News Banner -->
+    <section class="news-banner">
+        <h2>S&C News</h2>
+    </section>
+
+    <!-- News Cards Section -->
+    <section class="news-cards">
+        <div class="news-card">News 1</div>
+        <div class="news-card">News 2</div>
+        <div class="news-card">News 3</div>
+        <div class="news-card">News 4</div>
+        <div class="news-card">News 5</div>
+        <div class="news-card">News 6</div>
+    </section>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - S&C - <a asp-area="" asp-controller="Home">Home</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

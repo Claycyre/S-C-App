@@ -1,0 +1,55 @@
+@model List<WeatherApp.Models.SunriseSunset>
+
+@{
+    ViewData["Title"] = "Sunrise & Sunset Times";
+}
+
+<div class="container mt-4 text-center">
+    <h1 class="text-primary">Vancouver Sunrise & Sunset Times</h1>
+    <small class="text-primary"></small>
+</div>
+
+@{
+    var groupedByDate = Model.GroupBy(s => s.Date).OrderBy(g => g.Key);
+}
+
+<div class="container mt-4">
+    <div class="row g-4">
+        @foreach (var dayGroup in groupedByDate)
+        {
+            <div class="col-md-4 col-sm-6">
+                <div class="card shadow-sm rounded-3 border-0">
+                    <div class="card-body bg-light">
+                        <h5 class="card-title fw-bold text-primary mb-3">
+                            @dayGroup.Key
+                        </h5>
+
+                        <table class="table table-sm table-striped mb-0">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>City</th>
+                                    <th>Sunrise</th>
+                                    <th>Sunset</th>
+                                    <th>Civil Begin</th>
+                                    <th>Civil End</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in dayGroup)
+                                {
+                                    <tr>
+                                        <td>@item.City</td>
+                                        <td>@item.results?.sunrise</td>
+                                        <td>@item.results?.sunset</td>
+                                        <td>@item.results?.civil_twilight_begin</td>
+                                        <td>@item.results?.civil_twilight_end</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

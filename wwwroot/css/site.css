@@ -1,0 +1,61 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/* Banner Section */
+.news-banner {
+    background: #1e3a8a; /* deep blue */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 30px;
+    border-radius: 8px;
+}
+
+    .news-banner h2 {
+        margin: 0;
+        font-size: 1.8rem;
+        font-weight: 600;
+    }
+
+
+.news-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+    padding: 0 10px;
+}
+
+
+.news-card {
+    background: #f3f4f6; /* light gray */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .news-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
