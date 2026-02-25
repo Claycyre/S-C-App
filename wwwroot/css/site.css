@@ -83,7 +83,7 @@ body {
     letter-spacing: 0.3px;
 }
 
-.news-ribbon-tech { background: #0f172a; }
+.news-ribbon-tech {background: #e08c36;}
 .news-ribbon-politics { background: #7c2d12; }
 .news-ribbon-business { background: #065f46; }
 .news-ribbon-sports { background: #1d4ed8; }
@@ -120,4 +120,14 @@ body {
     color: #4b5563;
     line-height: 1.25;
     margin: 0;
+}
+
+
+.news-history-link-wrap {
+    margin-top: 12px;
+}
+
+.news-history-link-wrap .btn {
+    font-size: 0.9rem;
+    font-weight: 600;
 }

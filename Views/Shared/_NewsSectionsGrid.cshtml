@@ -1,0 +1,143 @@
+@model WeatherApp.Models.NewsSectionsViewModel
+
+<div class="news-sections-grid">
+    <!-- Tech -->
+    <article class="news-section" aria-label="Tech news">
+        <div class="news-ribbon news-ribbon-tech"></div>
+        <img class="news-section-image" src="~/images/tech.png" alt="Tech section" />
+
+        <div class="news-items">
+            @if (Model.Tech == null || !Model.Tech.Any())
+            {
+                <div class="news-item">
+                    <div class="news-headline">Unable to load Tech right now</div>
+                    <div class="news-blurb">Please refresh later.</div>
+                </div>
+            }
+            else
+            {
+                foreach (var item in Model.Tech)
+                {
+                    <div class="news-item">
+                        <div class="news-headline">
+                            <a href="@item.Link" target="_blank" rel="noopener noreferrer">@item.Title</a>
+                        </div>
+                        @if (!string.IsNullOrWhiteSpace(item.Summary))
+                        {
+                            <div class="news-blurb">@item.Summary</div>
+                        }
+                        @if (item.Published != null)
+                        {
+                            <div class="news-blurb"><small class="text-muted">@item.Published.Value.LocalDateTime.ToString("MMM d, yyyy h:mm tt")</small></div>
+                        }
+                    </div>
+                }
+            }
+        </div>
+    </article>
+
+    <!-- Politics -->
+    <article class="news-section" aria-label="Politics news">
+        <div class="news-ribbon news-ribbon-politics"></div>
+        <img class="news-section-image" src="~/images/politics.png" alt="Politics section" />
+
+        <div class="news-items">
+            @if (Model.Politics == null || !Model.Politics.Any())
+            {
+                <div class="news-item">
+                    <div class="news-headline">Unable to load Politics right now</div>
+                    <div class="news-blurb">Please refresh later.</div>
+                </div>
+            }
+            else
+            {
+                foreach (var item in Model.Politics)
+                {
+                    <div class="news-item">
+                        <div class="news-headline">
+                            <a href="@item.Link" target="_blank" rel="noopener noreferrer">@item.Title</a>
+                        </div>
+                        @if (!string.IsNullOrWhiteSpace(item.Summary))
+                        {
+                            <div class="news-blurb">@item.Summary</div>
+                        }
+                        @if (item.Published != null)
+                        {
+                            <div class="news-blurb"><small class="text-muted">@item.Published.Value.LocalDateTime.ToString("MMM d, yyyy h:mm tt")</small></div>
+                        }
+                    </div>
+                }
+            }
+        </div>
+    </article>
+
+    <!-- Business -->
+    <article class="news-section" aria-label="Business news">
+        <div class="news-ribbon news-ribbon-business"></div>
+        <img class="news-section-image" src="~/images/business.png" alt="Business section" />
+
+        <div class="news-items">
+            @if (Model.Business == null || !Model.Business.Any())
+            {
+                <div class="news-item">
+                    <div class="news-headline">Unable to load Business right now</div>
+                    <div class="news-blurb">Please refresh later.</div>
+                </div>
+            }
+            else
+            {
+                foreach (var item in Model.Business)
+                {
+                    <div class="news-item">
+                        <div class="news-headline">
+                            <a href="@item.Link" target="_blank" rel="noopener noreferrer">@item.Title</a>
+                        </div>
+                        @if (!string.IsNullOrWhiteSpace(item.Summary))
+                        {
+                            <div class="news-blurb">@item.Summary</div>
+                        }
+                        @if (item.Published != null)
+                        {
+                            <div class="news-blurb"><small class="text-muted">@item.Published.Value.LocalDateTime.ToString("MMM d, yyyy h:mm tt")</small></div>
+                        }
+                    </div>
+                }
+            }
+        </div>
+    </article>
+
+    <!-- Sports -->
+    <article class="news-section" aria-label="Sports news">
+        <div class="news-ribbon news-ribbon-sports"></div>
+        <img class="news-section-image" src="~/images/sports.png" alt="Sports section" />
+
+        <div class="news-items">
+            @if (Model.Sports == null || !Model.Sports.Any())
+            {
+                <div class="news-item">
+                    <div class="news-headline">Unable to load Sports right now</div>
+                    <div class="news-blurb">Please refresh later.</div>
+                </div>
+            }
+            else
+            {
+                foreach (var item in Model.Sports)
+                {
+                    <div class="news-item">
+                        <div class="news-headline">
+                            <a href="@item.Link" target="_blank" rel="noopener noreferrer">@item.Title</a>
+                        </div>
+                        @if (!string.IsNullOrWhiteSpace(item.Summary))
+                        {
+                            <div class="news-blurb">@item.Summary</div>
+                        }
+                        @if (item.Published != null)
+                        {
+                            <div class="news-blurb"><small class="text-muted">@item.Published.Value.LocalDateTime.ToString("MMM d, yyyy h:mm tt")</small></div>
+                        }
+                    </div>
+                }
+            }
+        </div>
+    </article>
+</div>

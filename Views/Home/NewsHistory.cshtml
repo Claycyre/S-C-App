@@ -1,0 +1,29 @@
+@model WeatherApp.Models.NewsHistoryViewModel
+
+@{
+    ViewData["Title"] = "News History";
+}
+
+<section class="news-wrapper" aria-label="S&C News History">
+    <div class="news-title">
+        <h2>S&amp;C News</h2>
+        <p class="news-subtitle">@Model.SelectedDate.ToString("dddd, dd MMMM yyyy")</p>
+    </div>
+
+    <form asp-action="NewsHistory" asp-controller="Home" method="get" class="row g-2 justify-content-center align-items-end mb-3">
+        <div class="col-sm-8 col-md-5 col-lg-4">
+            <label class="form-label text-primary fw-bold">Choose one of the past 10 days</label>
+            <select name="selectedDate" asp-items="Model.AvailableDates" class="form-select" onchange="this.form.submit()"></select>
+        </div>
+    </form>
+
+    @if (!string.IsNullOrWhiteSpace(Model.Message))
+    {
+        <div class="alert alert-warning" role="alert">@Model.Message</div>
+    }
+
+    @if (Model.Sections.HasItems)
+    {
+        @await Html.PartialAsync("_NewsSectionsGrid", Model.Sections)
+    }
+</section>

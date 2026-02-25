@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+@using System
+@{
+    var controllerName = ViewContext.RouteData.Values["controller"]?.ToString();
+    var actionName = ViewContext.RouteData.Values["action"]?.ToString();
+    var showCurrentNews = string.Equals(controllerName, "Home", StringComparison.OrdinalIgnoreCase)
+        && string.Equals(actionName, "Index", StringComparison.OrdinalIgnoreCase);
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -31,7 +38,11 @@
             @RenderBody()
         </main>
     </div>
-    @await Html.PartialAsync("_NewsSections")
+
+    @if (showCurrentNews)
+    {
+        @await Component.InvokeAsync("CbcNews")
+    }
 
     <footer class="border-top footer text-muted">
         <div class="container">

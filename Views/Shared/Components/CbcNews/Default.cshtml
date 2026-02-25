@@ -1,0 +1,13 @@
+@model WeatherApp.Models.NewsSectionsViewModel
+
+<section class="news-wrapper" aria-label="S&C News">
+    <div class="news-title">
+        <h2>S&amp;C News (CBC)</h2>
+        <p class="news-subtitle">Headlines pulled from CBC RSS feeds.</p>
+        <div class="news-history-link-wrap">
+            <a class="btn btn-outline-primary btn-sm" asp-controller="Home" asp-action="NewsHistory">News History</a>
+        </div>
+    </div>
+
+    @await Html.PartialAsync("_NewsSectionsGrid", Model)
+</section>

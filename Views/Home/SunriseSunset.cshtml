@@ -1,16 +1,32 @@
-@model List<WeatherApp.Models.SunriseSunset>
+@model WeatherApp.Models.CitySunriseViewModel
 
 @{
     ViewData["Title"] = "Sunrise & Sunset Times";
 }
 
 <div class="container mt-4 text-center">
-    <h1 class="text-primary">Vancouver Sunrise & Sunset Times</h1>
+    <h1 class="text-primary">@Model.SelectedCity Sunrise & Sunset Times</h1>
     <small class="text-primary"></small>
 </div>
 
+<div class="container mt-3">
+    <form asp-action="SunriseSunset" asp-controller="Home" method="get" class="row g-2 align-items-end">
+        <div class="col-sm-6 col-md-4">
+            <label class="form-label text-primary fw-bold">Choose a Canadian city</label>
+            <select asp-for="SelectedCity" asp-items="Model.Cities" class="form-select" onchange="this.form.submit()"></select>
+        </div>
+    </form>
+</div>
+
+@if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+{
+    <div class="container mt-3">
+        <div class="alert alert-warning" role="alert">@Model.ErrorMessage</div>
+    </div>
+}
+
 @{
-    var groupedByDate = Model.GroupBy(s => s.Date).OrderBy(g => g.Key);
+    var groupedByDate = Model.SunData.GroupBy(s => s.Date).OrderBy(g => g.Key);
 }
 
 <div class="container mt-4">

@@ -1,4 +1,4 @@
-﻿@model List<Weather.Models.CurrentWeather>
+﻿@model WeatherApp.Models.CityWeatherViewModel
 
 @{
 
@@ -10,49 +10,63 @@
 
 <div class="container-fluid">
 
-@foreach(var item in Model)
-{
-    <h3 class="text-info">
-        Our @item.Location.name campus is currently
-
-        @item.Current.condition.text.ToLower()
-
-        and @item.Current.temp_c&#8451; <img src="@item.Current.condition.icon" />
-
-    </h3>
-    <div class="row">
-        <div class="col-sm-5 col-md-4">
-            <table class="table table-hover table-sm">
-                <thead>
-                    <tr><th scope="col" colspan="2">Location</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td scope="row">City</td><td>@item.Location.name</td></tr>
-                    <tr><td scope="row">Region</td><td>@item.Location.region</td></tr>
-                    <tr><td scope="row">County</td><td>@item.Location.country</td></tr>
-                    <tr><td scope="row">Latitude</td><td>@item.Location.lat</td></tr>
-                    <tr><td scope="row">Longitude</td><td>@item.Location.lon</td></tr>
-                </tbody>
-            </table>
+    <form asp-action="Index" asp-controller="Home" method="get" class="row g-2 align-items-end mb-3">
+        <div class="col-sm-6 col-md-4">
+            <label class="form-label text-primary fw-bold">Choose a Canadian city</label>
+            <select asp-for="SelectedCity" asp-items="Model.Cities" class="form-select" onchange="this.form.submit()"></select>
         </div>
-        <div class="col-sm-1"></div>
-        <div class="col-sm-5 col-md-4">
-            <table class="table table-hover table-sm">
-                <thead>
-                    <tr><th scope="col" colspan="2">Local Conditions</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td scope="row">Wind Kph</td><td>@item.Current.wind_kph</td></tr>
-                    <tr><td scope="row">Direction</td><td>@item.Current.wind_dir</td></tr>
-                    <tr><td scope="row">Humidity</td><td>@item.Current.humidity</td></tr>
-                    <tr><td scope="row">Cloud</td><td>@item.Current.cloud</td></tr>
-                    <tr>
-                        <td scope="row">Feels Like</td>
-                        <td>@item.Current.feelslike_c&#8451;</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="col-sm-6 col-md-6">
+            <small class="text-muted">Tip: the page updates automatically when you change the city.</small>
         </div>
-    </div>
-}
+    </form>
+
+    @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+    {
+        <div class="alert alert-warning" role="alert">@Model.ErrorMessage</div>
+    }
+
+    @if (Model.Weather is not null)
+    {
+        var item = Model.Weather;
+        <h3 class="text-info">
+            @item.Location.name is currently
+            @item.Current.condition.text.ToLower()
+            and @item.Current.temp_c&#8451; <img src="@item.Current.condition.icon" />
+        </h3>
+
+        <div class="row">
+            <div class="col-sm-5 col-md-4">
+                <table class="table table-hover table-sm">
+                    <thead>
+                        <tr><th scope="col" colspan="2">Location</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td scope="row">City</td><td>@item.Location.name</td></tr>
+                        <tr><td scope="row">Region</td><td>@item.Location.region</td></tr>
+                        <tr><td scope="row">Country</td><td>@item.Location.country</td></tr>
+                        <tr><td scope="row">Latitude</td><td>@item.Location.lat</td></tr>
+                        <tr><td scope="row">Longitude</td><td>@item.Location.lon</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-5 col-md-4">
+                <table class="table table-hover table-sm">
+                    <thead>
+                        <tr><th scope="col" colspan="2">Local Conditions</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td scope="row">Wind Kph</td><td>@item.Current.wind_kph</td></tr>
+                        <tr><td scope="row">Direction</td><td>@item.Current.wind_dir</td></tr>
+                        <tr><td scope="row">Humidity</td><td>@item.Current.humidity</td></tr>
+                        <tr><td scope="row">Cloud</td><td>@item.Current.cloud</td></tr>
+                        <tr>
+                            <td scope="row">Feels Like</td>
+                            <td>@item.Current.feelslike_c&#8451;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
 </div>
